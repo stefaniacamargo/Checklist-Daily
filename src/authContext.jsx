@@ -10,7 +10,7 @@ export const useAuth = () => {
 };
 
 export function AuthProvider({ children }) {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(null);
   const [user, setUser] = useState({});
 
   useEffect(() => {

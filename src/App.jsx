@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Container } from "@mui/material";
+import { Container, CircularProgress } from "@mui/material";
 
 // Components
+import { useAuth } from "./authContext";
 
 //Pages
 
@@ -10,13 +11,20 @@ import { Register } from "./Pages/Register";
 import { Home } from "./Pages/Home";
 
 function App() {
+  const { isAuth, user } = useAuth();
+  console.log(user);
+  
+  if (isAuth === null) {
+    return <CircularProgress />;
+  }
+
   return (
     <BrowserRouter>
       <Container>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="home" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </Container>
     </BrowserRouter>
