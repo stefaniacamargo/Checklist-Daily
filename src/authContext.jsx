@@ -29,8 +29,17 @@ export function AuthProvider({ children }) {
     };
   }, [setIsAuth, setUser]);
 
+  const logout = async () => {
+    try {
+      await auth.signOut();
+    } catch (error) {
+      console.log("Error in logout", error);
+      throw error;
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ isAuth, user }}>
+    <AuthContext.Provider value={{ isAuth, user, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -6,13 +6,21 @@ import {
   CircularProgress,
   Alert,
   Typography,
-  Container,
-  Box,
-  Paper
+  Box
 } from "@mui/material";
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { styled } from '@mui/material/styles';
+
+const FormContainer = styled(Box)`
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 5rem;
+`;
 
 // Components
 import { auth } from "../config/firebase";
@@ -47,44 +55,61 @@ export const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <Container maxWidth="xs" sx={{ mt: 10}}>
-        <Grid container spacing={2}>
-          <Typography component="h1" variant="h3" align="center">
-            CheckList Daily
-            <CheckCircleOutlineIcon color="secondary" sx={{ fontSize: 40 }}></CheckCircleOutlineIcon>
-            <Paper elevation={6} >
-          <Box sx={{ display: "grid", gap: 2, mt: 10 }}>
-            <TextField
-              label="Email"
-              color = "secondary"
-              type="email"
-              value={email}
-              onChange={onEmailChange}
-              required
-            />
-            <TextField
-              label="Password"
-              type="password"
-              color= "secondary"
-              value={password}
-              onChange={onPasswordChange}
-              required
-            />
-            {errorMessage && (
-              <Grid item xs={12}>
-                <Alert severity="error">{errorMessage}</Alert>
-              </Grid>
-            )}
-            <Button variant="contained" type="submit" color= "secondary" disabled={isLoading}>
-              {isLoading ? <CircularProgress size="2rem" /> : "Login"}
-            </Button>
-          </Box>
-          </Paper>
+    <FormContainer
+      component="form"
+      onSubmit={onSubmit}
+    >
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Typography
+            textAlign="center"
+            component="h1"
+            variant="h5"
+            align="center"
+          >
+            Please enter your details below
           </Typography>
         </Grid>
-      </Container>
-    </form>
+        <Grid item xs={12}>
+          <TextField
+            label="Email"
+            color="secondary"
+            type="email"
+            value={email}
+            onChange={onEmailChange}
+            required
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            label="Password"
+            type="password"
+            color="secondary"
+            value={password}
+            onChange={onPasswordChange}
+            required
+            fullWidth
+          />
+        </Grid>
+        {errorMessage && (
+          <Grid item xs={12}>
+            <Alert severity="error">{errorMessage}</Alert>
+          </Grid>
+        )}
+        <Grid item xs={12}>
+          <Button
+            variant="contained"
+            type="submit"
+            color="secondary"
+            disabled={isLoading}
+            fullWidth
+          >
+            {isLoading ? <CircularProgress size="2rem" /> : "Login"}
+          </Button>
+        </Grid>
+      </Grid>
+    </FormContainer>
   );
 };
 
