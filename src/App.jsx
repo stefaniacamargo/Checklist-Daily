@@ -3,6 +3,7 @@ import { Container, CircularProgress } from "@mui/material";
 
 // Components
 import { useAuth } from "./authContext";
+import { AppNav } from "./components/AppNav";
 
 //Pages
 
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <AppNav />
       <Container>
         <Routes>
           <Route path="/" element={<Login />} />
