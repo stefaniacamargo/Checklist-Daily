@@ -1,5 +1,16 @@
 import { useState } from "react";
-import { Grid, TextField, Button, CircularProgress, Alert, Typography } from "@mui/material";
+import {
+  Grid,
+  TextField,
+  Button,
+  CircularProgress,
+  Alert,
+  Typography,
+  Container,
+  Box,
+  Paper
+} from "@mui/material";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -27,7 +38,7 @@ export const LoginForm = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setErrorMessage("");
-      navigate('/home');
+      navigate("/home");
     } catch (error) {
       setErrorMessage(error.message);
     } finally {
@@ -37,43 +48,42 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Typography component="h1" variant="h3">
-            Welcome
+      <Container maxWidth="xs" sx={{ mt: 10}}>
+        <Grid container spacing={2}>
+          <Typography component="h1" variant="h3" align="center">
+            CheckList Daily
+            <CheckCircleOutlineIcon color="secondary" sx={{ fontSize: 40 }}></CheckCircleOutlineIcon>
+            <Paper elevation={6} >
+          <Box sx={{ display: "grid", gap: 2, mt: 10 }}>
+            <TextField
+              label="Email"
+              color = "secondary"
+              type="email"
+              value={email}
+              onChange={onEmailChange}
+              required
+            />
+            <TextField
+              label="Password"
+              type="password"
+              color= "secondary"
+              value={password}
+              onChange={onPasswordChange}
+              required
+            />
+            {errorMessage && (
+              <Grid item xs={12}>
+                <Alert severity="error">{errorMessage}</Alert>
+              </Grid>
+            )}
+            <Button variant="contained" type="submit" color= "secondary" disabled={isLoading}>
+              {isLoading ? <CircularProgress size="2rem" /> : "Login"}
+            </Button>
+          </Box>
+          </Paper>
           </Typography>
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            label="Email"
-            type="email"
-            value={email}
-            onChange={onEmailChange}
-            required
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            label="Password"
-            type="password"
-            value={password}
-            onChange={onPasswordChange}
-            required
-          />
-        </Grid>
-        {errorMessage && (
-          <Grid item xs={12}>
-            <Alert severity="error">
-              {errorMessage}
-            </Alert>
-          </Grid>
-        )}
-        <Grid item xs={12}>
-          <Button variant="contained" type="submit" disabled={isLoading}>
-            {isLoading ? <CircularProgress size="2rem" /> : "Login"}
-          </Button>
-        </Grid>
-      </Grid>
+      </Container>
     </form>
   );
 };
