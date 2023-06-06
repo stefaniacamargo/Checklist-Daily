@@ -6,12 +6,11 @@ import {
   CircularProgress,
   Alert,
   Typography,
-  Box
+  Box,
 } from "@mui/material";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 
 const FormContainer = styled(Box)`
   width: 100%;
@@ -19,7 +18,7 @@ const FormContainer = styled(Box)`
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  margin-top: 5rem;
+  margin-top: 8rem;
 `;
 
 // Components
@@ -53,12 +52,11 @@ export const LoginForm = () => {
       setIsLoading(false);
     }
   };
-
+  const handleButtonClick = () => {
+    navigate("/register");
+  };
   return (
-    <FormContainer
-      component="form"
-      onSubmit={onSubmit}
-    >
+    <FormContainer component="form" onSubmit={onSubmit}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Typography
@@ -73,7 +71,7 @@ export const LoginForm = () => {
         <Grid item xs={12}>
           <TextField
             label="Email"
-            color="secondary"
+            color="primary"
             type="email"
             value={email}
             onChange={onEmailChange}
@@ -85,7 +83,7 @@ export const LoginForm = () => {
           <TextField
             label="Password"
             type="password"
-            color="secondary"
+            color="primary"
             value={password}
             onChange={onPasswordChange}
             required
@@ -93,15 +91,25 @@ export const LoginForm = () => {
           />
         </Grid>
         {errorMessage && (
-          <Grid item xs={12}>
+          <Grid item xs={12} >
             <Alert severity="error">{errorMessage}</Alert>
           </Grid>
         )}
+        <Grid container spacing={2} mt={2} ml={8}>
+            <Typography textAlign="center" component="p" align="center">
+              ¿You do not have an account?
+            </Typography>
+            <Grid ml={5}>
+            <Button href="#text-buttons" color= "warning" onClick={handleButtonClick}>
+              Sign Up
+            </Button>
+            </Grid>
+        </Grid>
         <Grid item xs={12}>
           <Button
             variant="contained"
             type="submit"
-            color="secondary"
+            color="primary"
             disabled={isLoading}
             fullWidth
           >
