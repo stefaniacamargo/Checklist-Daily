@@ -1,10 +1,9 @@
-import { TodoForm } from '../components/TaskList'; 
+import { TodoForm } from "../components/TaskList";
 
-
-export function Home(){
-  return(
+export function Home() {
+  return (
     <div>
-      <TodoForm/>
+      <TodoForm />
     </div>
-  )
+  );
 }

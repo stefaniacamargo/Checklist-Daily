@@ -14,7 +14,7 @@ import { Home } from "./Pages/Home";
 function App() {
   const { isAuth, user } = useAuth();
   console.log(user);
-  
+
   if (isAuth === null) {
     return <CircularProgress />;
   }

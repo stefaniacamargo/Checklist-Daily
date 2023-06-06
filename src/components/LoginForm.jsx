@@ -91,19 +91,23 @@ export const LoginForm = () => {
           />
         </Grid>
         {errorMessage && (
-          <Grid item xs={12} >
+          <Grid item xs={12}>
             <Alert severity="error">{errorMessage}</Alert>
           </Grid>
         )}
         <Grid container spacing={2} mt={2} ml={8}>
-            <Typography textAlign="center" component="p" align="center">
-              ¿You do not have an account?
-            </Typography>
-            <Grid ml={5}>
-            <Button href="#text-buttons" color= "warning" onClick={handleButtonClick}>
-              Sign Up
+          <Typography textAlign="center" component="p" align="center">
+            ¿You do not have an account?
+          </Typography>
+          <Grid ml={5}>
+            <Button
+              href="#text-buttons"
+              color="warning"
+              onClick={handleButtonClick}
+            >
+              Sign In
             </Button>
-            </Grid>
+          </Grid>
         </Grid>
         <Grid item xs={12}>
           <Button

@@ -83,6 +83,7 @@ export const TodoForm = () => {
                 {task.text}
               </span>
               <Button
+                sx={{ ml: 30 }}
                 variant="outlined"
                 startIcon={<DeleteIcon />}
                 onClick={() => deleteTask(task.id)}
