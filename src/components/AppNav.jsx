@@ -1,5 +1,5 @@
 import { AppBar, Box, Toolbar, Typography, Button } from "@mui/material";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 import { useNavigate } from "react-router-dom";
 
@@ -17,11 +17,11 @@ export const AppNav = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" color="primary">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" align="center" sx={{ flexGrow: 1, mb: 2 }}>
             CheckList Daily
-            <CheckCircleOutlineIcon />
+            <CheckCircleIcon sx={{ ml : 1, mt: 2}}/>
           </Typography>
           {isAuth && (
             <Button color="inherit" onClick={onLogoutClick}>

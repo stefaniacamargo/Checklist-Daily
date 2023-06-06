@@ -6,7 +6,6 @@ import {
   List,
   Paper,
 } from "@mui/material";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 
