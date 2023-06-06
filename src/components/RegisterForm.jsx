@@ -19,7 +19,7 @@ const FormContainer = styled(Box)`
   margin: 0 auto;
   margin-top: 8rem;
 `;
-import { createUserWithEmailAndPassword} from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
 
@@ -87,7 +87,7 @@ export const RegisterForm = () => {
           <TextField
             label="Password"
             type="password"
-            color="secondary"
+            color="primary"
             value={password}
             onChange={handlePasswordChange}
             required

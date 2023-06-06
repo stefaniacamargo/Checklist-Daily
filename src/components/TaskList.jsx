@@ -1,11 +1,4 @@
-import {
-  Input,
-  Container,
-  Typography,
-  Button,
-  List,
-  Paper,
-} from "@mui/material";
+import { Input, Container, Typography, Button, List } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 
@@ -42,13 +35,12 @@ export const TodoForm = () => {
 
     setTasks(updatedTasks);
   };
-
   const deleteTask = (taskId) => {
     const filteredTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(filteredTasks);
   };
   return (
-    <Container maxWidth="xs" sx={{ mt: 10 }}>
+    <Container maxWidth="xs" sx={{ mt: 6 }}>
       <Typography component="h1" variant="h5" align="center" sx={{ mb: 5 }}>
         Welcome, here you can track your ongoing tasks
       </Typography>
@@ -62,44 +54,48 @@ export const TodoForm = () => {
           label="fullWidth"
           placeholder="What's next..."
           id="fullWidth"
-          color="secondary"
+          color="primary"
         />
         <Button
           variant="contained"
           type="submit"
-          color="secondary"
+          color="primary"
           size="1rem"
           sx={{ ml: 19, mb: 5 }}
         >
           Add Task
         </Button>
       </form>
-      <Paper elevation={7}>
-        <List sx={{ width: "100%" }}>
-          <Typography component="p">
-            {tasks.map((task) => (
-              <li key={task.id}>
-                <input
-                  type="checkbox"
-                  checked={task.completed}
-                  onChange={() => toggleTaskCompletion(task.id)}
-                />
-                <span
-                  style={{
-                    textDecoration: task.completed ? "line-through" : "none",
-                  }}
-                >
-                  {task.text}
-                </span>
-                <DeleteIcon
-                  onClick={() => deleteTask(task.id)}
-                  sx={{ fontSize: 20 }}
-                ></DeleteIcon>
-              </li>
-            ))}
-          </Typography>
-        </List>
-      </Paper>
+      <List sx={{ width: "100%" }}>
+        <Typography component="p">
+          {tasks.map((task) => (
+            <li key={task.id}>
+              <input
+                type="checkbox"
+                checked={task.completed}
+                onChange={() => toggleTaskCompletion(task.id)}
+              />
+              <span
+                style={{
+                  textDecoration: task.completed ? "line-through" : "none",
+                }}
+              >
+                {task.text}
+              </span>
+              <Button
+                variant="outlined"
+                startIcon={<DeleteIcon />}
+                onClick={() => deleteTask(task.id)}
+                size="small"
+                color="warning"
+              >
+                Delete
+              </Button>
+            </li>
+          ))}
+        </Typography>
+      </List>
+      <Typography align="center">{`You have ${tasks.length} To-Dos`}</Typography>
     </Container>
   );
 };
